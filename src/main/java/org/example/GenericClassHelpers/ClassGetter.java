@@ -6,10 +6,12 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.Arrays;
 
+import static org.example.ThreadUtils.CallerInfo.GetFilePath;
+
 public interface ClassGetter
 {
     @val
-    public Class<?>[] GenericClasses;
+    public Class<?>[] genericClasses;
 
     static Type[] GetRawTypeArgs(Object obj)
     {
@@ -17,14 +19,5 @@ public interface ClassGetter
         var superClass = thisClass.getGenericSuperclass();
         var parameterizedType = (ParameterizedType) superClass;
         return parameterizedType.getActualTypeArguments();
-    }
-}
-
-class SingleTest<T> extends ClassGetterSingle<T>
-{
-    public SingleTest()
-    {
-        var types = String.join(", ", Arrays.stream(genericClasses).map(Class::getName).toList());
-        System.out.println("New ${CallerFilePath} of type(s): [${types}]");
     }
 }
