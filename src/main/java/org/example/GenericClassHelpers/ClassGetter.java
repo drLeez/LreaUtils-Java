@@ -1,17 +1,11 @@
 package org.example.GenericClassHelpers;
 
-import manifold.ext.props.rt.api.val;
-
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-import java.util.Arrays;
-
-import static org.example.ThreadUtils.CallerInfo.GetFilePath;
 
 public interface ClassGetter
 {
-    @val
-    public Class<?>[] genericClasses;
+    Class<?>[] getGenericClasses();
 
     static Type[] GetRawTypeArgs(Object obj)
     {
