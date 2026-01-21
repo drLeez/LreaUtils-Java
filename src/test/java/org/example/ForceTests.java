@@ -8,6 +8,30 @@ import static org.junit.jupiter.api.Assertions.*;
 class ForceTests
 {
     @Test
+    public void Get_Success() throws NoSuchFieldException, IllegalAccessException
+    {
+        var dummy = new Dummy();
+        String value = Force.Get(dummy, "_name");
+        assertEquals("defaultName", value);
+    }
+
+    @Test
+    public void GetOrDefault_Success()
+    {
+        var dummy = new Dummy();
+        String value = Force.GetOrDefault(dummy, "_name");
+        assertEquals("defaultName", value);
+    }
+
+    @Test
+    public void Set_Success() throws NoSuchFieldException, IllegalAccessException
+    {
+        var dummy = new Dummy();
+        Force.Set(dummy, "_name", "newName");
+        assertEquals("newName", Force.GetOrDefault(dummy, "_name"));
+    }
+
+    @Test
     public void get_Success() throws NoSuchFieldException, IllegalAccessException
     {
         var dummy = new Dummy();

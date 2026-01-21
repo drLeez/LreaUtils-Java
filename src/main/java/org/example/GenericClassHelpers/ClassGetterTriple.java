@@ -1,23 +1,25 @@
 package org.example.GenericClassHelpers;
 
-public class ClassGetterTriple<A, B, C> implements ClassGetter
+public class ClassGetterTriple<A, B, C> extends ClassGetter
 {
-    private final Class<A> aClass;
-    private final Class<B> bClass;
-    private final Class<C> cClass;
-
-    @SuppressWarnings("unchecked")
     public ClassGetterTriple()
     {
-        var typeArgs = ClassGetter.GetRawTypeArgs(this);
-        aClass = (Class<A>) typeArgs[0];
-        bClass = (Class<B>) typeArgs[1];
-        cClass = (Class<C>) typeArgs[2];
+        super();
     }
 
-    @Override
-    public Class<?>[] getGenericClasses()
+    protected ClassGetterTriple(Class<?>[] manual)
     {
+        super(manual);
+    }
+    
+    @Override
+    @SuppressWarnings("unchecked")
+    protected Class<?>[] autoConstruct()
+    {
+        var typeArgs = ClassGetter.GetRawTypeArgs(this);
+        var aClass = (Class<A>) typeArgs[0];
+        var bClass = (Class<B>) typeArgs[1];
+        var cClass = (Class<C>) typeArgs[2];
         return new Class[]{aClass, bClass, cClass};
     }
 }
