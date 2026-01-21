@@ -1,7 +1,6 @@
 package org.example.ThreadUtils;
 
 import java.lang.StackWalker.StackFrame;
-import java.util.List;
 
 public class CallerInfo
 {
